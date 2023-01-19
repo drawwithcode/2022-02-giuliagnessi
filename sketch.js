@@ -38,7 +38,7 @@ function draw() {
         fill(color(colorHex));
       }
 
-      ellipse(x - 5, y - 5, 8, 8);
+      ellipse(x - 5, y - 5, 7, 7);
       //text
       noStroke();
       textFont("Roboto Mono");
