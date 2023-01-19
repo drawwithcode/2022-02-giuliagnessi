@@ -1,79 +1,57 @@
-// sfondo
-let b1;
-let b2;
-
-//myPalette
-const myPalette = ["#993955", "#AE76A6", "#A3C3D9", "#CCD6EB", "#E9ECF5"];
-const myPalette2 = ["#ED6A5A", "#F4F1BB", "#9BC1BC", "#5CA4A9", "#E6EBE0"];
-
-//costanti texture
-const a = 40;
-const b = 40;
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  strokeWeight(27);
-  frameRate(1.6);
-
-  // sfondo
-  b1 = color("#C8D5B9");
-  b2 = color("#68B0AB");
+function preload() {
+  // put preload code here
 }
 
+var myPalette1 = ["#A57548", "#FCD7AD", "#F6C28B", "#5296A5", "#82DDF0"];
+
+var myPalette2 = ["#E3D8F1", "#DABECA", "#BF8B85", "#AD8A64", "#5D5F71"];
+
+var myPalette3 = ["#38023B", "#A288E3", "#BBD5ED", "#CEFDFF", "#CCFFCB"];
+
+var myPalette4 = ["#D6F6DD", "#DAC4F7", "#F4989C", "#EBD2B4", "#ACECF7"];
+
+function setup() {}
+
 function draw() {
-  //bg
-
-  background(color(random(myPalette)));
-
-  if (mouseIsPressed) {
-    background(color(random(myPalette2)));
-  }
-
-  for (let x = a; x <= width; x += a * 1.75) {
-    for (let y = a; y <= height; y += a * 1.75) {
-      if (mouseX < windowWidth / 2) {
-        stroke(color(random(myPalette)));
-        noFill();
-      } else {
-        fill(color(random(myPalette)));
-        noStroke();
-      }
-
-      if (mouseIsPressed) {
-        fill(color(random(myPalette2)));
-        stroke(color(random(myPalette2)));
-      }
-
-      ellipse(x, y, a);
-    }
-  }
-
-  for (let x = b; x <= width; x += b * 2) {
-    for (let y = b; y <= height; y += b * 2) {
-      if (mouseX < windowHeight / 2) {
-        fill(color(random(myPalette)));
-        noStroke();
-      } else {
-        stroke(color(random(myPalette)));
-        noFill();
-      }
-
-      if (mouseIsPressed) {
-        fill(color(random(myPalette2)));
-        stroke(color(random(myPalette2)));
-      }
-    }
-  }
-
-  //text
+  createCanvas(windowWidth, windowHeight);
+  frameRate(5);
+  background("#FFFFF");
   noStroke();
-  textFont("Roboto Mono");
-  fill("BLACK");
-  textSize(23);
-  text("slide or click to change the wallpaper", mouseX, mouseY);
+
+  for (var y = 10; y < windowHeight; y += 10) {
+    for (var x = 10; x < windowWidth; x += 10) {
+      if (mouseX < windowWidth / 2 && mouseY < windowHeight / 2) {
+        var index = floor(random() * myPalette1.length);
+        var colorHex = myPalette1[index];
+        fill(color(colorHex));
+      } else if (mouseX > windowWidth / 2 && mouseY < windowHeight / 2) {
+        var index = floor(random() * myPalette2.length);
+        var colorHex = myPalette2[index];
+        fill(color(colorHex));
+      } else if (mouseX < windowWidth / 2 && mouseY > windowHeight / 2) {
+        var index = floor(random() * myPalette3.length);
+        var colorHex = myPalette3[index];
+        fill(color(colorHex));
+      } else if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
+        var index = floor(random() * myPalette4.length);
+        var colorHex = myPalette4[index];
+        fill(color(colorHex));
+      }
+
+      ellipse(x - 5, y - 5, 8, 8);
+      //text
+      noStroke();
+      textFont("Roboto Mono");
+      fill("BLACK");
+      textSize(15);
+      text("slide to change the wallpaper", mouseX, mouseY);
+    }
+  }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+
 
